@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Properties Quiz - 30 Questions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .quiz-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .question-section {
+            margin-bottom: 35px;
+            padding: 25px;
+            border-left: 5px solid #3498db;
+            background-color: #f8f9fa;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+        
+        .question-type {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .question-number {
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .question {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .answer-input {
+            border: 2px solid #bdc3c7;
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            min-width: 200px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .answer-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        .text-area {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            resize: vertical;
+            outline: none;
+        }
+        
+        .text-area:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        .scenario {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ff9800;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .hint {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #2d5a2d;
+        }
+        
+        .check-btn {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .check-btn:hover {
+            background: #2980b9;
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            border-left: 4px solid #27ae60;
+            color: #155724;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #e74c3c;
+            color: #721c24;
+        }
+        
+        .correct-answer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 8px 0;
+            font-size: 13px;
+        }
+        
+        .submit-all-btn {
+            background: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 30px auto;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-all-btn:hover {
+            background: #229954;
+        }
+        
+        .final-score {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #3498db;
+            margin-top: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>CSS Properties Master Quiz</h1>
+        <p class="subtitle">30 Questions with Immediate Feedback</p>
+
+        <!-- Question 1 -->
+        <div class="question-section">
+            <span class="question-type">BASIC PROPERTY</span>
+            <span class="question-number">Q1</span>
+            <div class="question">What CSS property controls the horizontal space an element occupies?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="width">
+            <button class="check-btn" onclick="checkAnswer(this, 'width')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This property determines how wide an element is.</div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-section">
+            <span class="question-type">BASIC PROPERTY</span>
+            <span class="question-number">Q2</span>
+            <div class="question">Which property sets the vertical dimension of an element?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="height">
+            <button class="check-btn" onclick="checkAnswer(this, 'height')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This works with width to define element dimensions.</div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-section">
+            <span class="question-type">BOX MODEL</span>
+            <span class="question-number">Q3</span>
+            <div class="question">What property creates space OUTSIDE an element's border?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="margin">
+            <button class="check-btn" onclick="checkAnswer(this, 'margin')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This pushes other elements away from this element.</div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-section">
+            <span class="question-type">BOX MODEL</span>
+            <span class="question-number">Q4</span>
+            <div class="question">Which property adds space INSIDE an element, between content and border?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="padding">
+            <button class="check-btn" onclick="checkAnswer(this, 'padding')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Think of this as breathing room inside the element.</div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-section">
+            <span class="question-type">BORDER STYLING</span>
+            <span class="question-number">Q5</span>
+            <div class="question">What property creates rounded corners on elements?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="border-radius">
+            <button class="check-btn" onclick="checkAnswer(this, 'border-radius')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This property rounds the corners of an element's border.</div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question-section">
+            <span class="question-type">BORDER STYLING</span>
+            <span class="question-number">Q6</span>
+            <div class="question">Which property creates a line around the edge of an element?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="border">
+            <button class="check-btn" onclick="checkAnswer(this, 'border')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This creates a visible outline around an element.</div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question-section">
+            <span class="question-type">BOX MODEL</span>
+            <span class="question-number">Q7</span>
+            <div class="question">What box-sizing value includes padding and border in the element's total width?</div>
+            <input type="text" class="answer-input" placeholder="Enter value..." data-answer="border-box">
+            <button class="check-btn" onclick="checkAnswer(this, 'border-box')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This value makes sizing more predictable for layouts.</div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question-section">
+            <span class="question-type">LAYOUT</span>
+            <span class="question-number">Q8</span>
+            <div class="question">Which property removes elements from normal flow to wrap text around them?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="float">
+            <button class="check-btn" onclick="checkAnswer(this, 'float')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Traditionally used for text wrapping around images.</div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question-section">
+            <span class="question-type">LAYOUT</span>
+            <span class="question-number">Q9</span>
+            <div class="question">What float value moves an element to the left side?</div>
+            <input type="text" class="answer-input" placeholder="Enter float value..." data-answer="left">
+            <button class="check-btn" onclick="checkAnswer(this, 'left')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This makes text wrap around the right side of the element.</div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question-section">
+            <span class="question-type">LAYOUT</span>
+            <span class="question-number">Q10</span>
+            <div class="question">Complete this CSS to float an image to the right:</div>
+            <div class="code-block">
+img {<br>
+&nbsp;&nbsp;float: <span style="background: #3498db; padding: 2px 8px; border-radius: 3px;">____</span>;<br>
+}
+            </div>
+            <input type="text" class="answer-input" placeholder="Enter float value..." data-answer="right">
+            <button class="check-btn" onclick="checkAnswer(this, 'right')">Check Answer</button>
+            <div class="feedback"></div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="question-section">
+            <span class="question-type">DISPLAY</span>
+            <span class="question-number">Q11</span>
+            <div class="question">What display value lets elements sit side-by-side while accepting width/height?</div>
+            <input type="text" class="answer-input" placeholder="Enter display value..." data-answer="inline-block">
+            <button class="check-btn" onclick="checkAnswer(this, 'inline-block')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Combines inline flow with block-level sizing.</div>
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question-section">
+            <span class="question-type">TEXT STYLING</span>
+            <span class="question-number">Q12</span>
+            <div class="question">Which property controls underlines, overlines, and strikethroughs?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="text-decoration">
+            <button class="check-btn" onclick="checkAnswer(this, 'text-decoration')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Used to add or remove decorative lines on text.</div>
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question-section">
+            <span class="question-type">TYPOGRAPHY</span>
+            <span class="question-number">Q13</span>
+            <div class="question">What property specifies which typeface to use for text?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="font-family">
+            <button class="check-btn" onclick="checkAnswer(this, 'font-family')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This sets the font type like Arial, Times, etc.</div>
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question-section">
+            <span class="question-type">TYPOGRAPHY</span>
+            <span class="question-number">Q14</span>
+            <div class="question">Which property controls how large or small text appears?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="font-size">
+            <button class="check-btn" onclick="checkAnswer(this, 'font-size')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Can be set in px, em, rem, %, etc.</div>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question-section">
+            <span class="question-type">COLOR</span>
+            <span class="question-number">Q15</span>
+            <div class="question">What property changes the color of text content?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="color">
+            <button class="check-btn" onclick="checkAnswer(this, 'color')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Sets the foreground color of text and other elements.</div>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="question-section">
+            <span class="question-type">COLOR</span>
+            <span class="question-number">Q16</span>
+            <div class="question">Which property sets the color behind an element's content?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="background-color">
+            <button class="check-btn" onclick="checkAnswer(this, 'background-color')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This fills the background area of an element.</div>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question-section">
+            <span class="question-type">EFFECTS</span>
+            <span class="question-number">Q17</span>
+            <div class="question">What property creates shadow effects around elements?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="box-shadow">
+            <button class="check-btn" onclick="checkAnswer(this, 'box-shadow')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Used to add depth and visual appeal to elements.</div>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question-section">
+            <span class="question-type">EFFECTS</span>
+            <span class="question-number">Q18</span>
+            <div class="question">Which property adds shadow effects specifically to text?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="text-shadow">
+            <button class="check-btn" onclick="checkAnswer(this, 'text-shadow')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Creates shadows behind text characters.</div>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question-section">
+            <span class="question-type">GRADIENTS</span>
+            <span class="question-number">Q19</span>
+            <div class="question">What CSS function creates smooth color transitions in a straight line?</div>
+            <input type="text" class="answer-input" placeholder="Enter function name..." data-answer="linear-gradient">
+            <button class="check-btn" onclick="checkAnswer(this, 'linear-gradient')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Used for creating gradient backgrounds.</div>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question-section">
+            <span class="question-type">GRADIENTS</span>
+            <span class="question-number">Q20</span>
+            <div class="question">Which function creates circular or elliptical color transitions?</div>
+            <input type="text" class="answer-input" placeholder="Enter function name..." data-answer="radial-gradient">
+            <button class="check-btn" onclick="checkAnswer(this, 'radial-gradient')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Creates gradients that radiate from a center point.</div>
+        </div>
+
+        <!-- Question 21 -->
+        <div class="question-section">
+            <span class="question-type">HOVER EFFECTS</span>
+            <span class="question-number">Q21</span>
+            <div class="question">What pseudo-class selector applies styles when a user hovers over an element?</div>
+            <input type="text" class="answer-input" placeholder="Enter pseudo-class..." data-answer=":hover">
+            <button class="check-btn" onclick="checkAnswer(this, ':hover')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Include the colon (:) in your answer.</div>
+        </div>
+
+        <!-- Question 22 -->
+        <div class="question-section">
+            <span class="question-type">HOVER EFFECTS</span>
+            <span class="question-number">Q22</span>
+            <div class="question">Complete this CSS to change button color on hover:</div>
+            <div class="code-block">
+button<span style="background: #3498db; padding: 2px 8px; border-radius: 3px;">____</span> {<br>
+&nbsp;&nbsp;background-color: red;<br>
+}
+            </div>
+            <input type="text" class="answer-input" placeholder="Enter pseudo-class..." data-answer=":hover">
+            <button class="check-btn" onclick="checkAnswer(this, ':hover')">Check Answer</button>
+            <div class="feedback"></div>
+        </div>
+
+        <!-- Question 23 -->
+        <div class="question-section">
+            <span class="question-type">SCENARIO</span>
+            <span class="question-number">Q23</span>
+            <div class="question">Write the complete box-shadow value for: 2px right, 3px down, 5px blur, gray color.</div>
+            <input type="text" class="answer-input" placeholder="Enter complete box-shadow value..." data-answer="2px 3px 5px gray" style="width: 300px;">
+            <button class="check-btn" onclick="checkAnswer(this, '2px 3px 5px gray')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Format: horizontal vertical blur color</div>
+        </div>
+
+        <!-- Question 24 -->
+        <div class="question-section">
+            <span class="question-type">SCENARIO</span>
+            <span class="question-number">Q24</span>
+            <div class="question">Create a text glow effect with blue color. What text-shadow value creates a glow with no offset and 8px blur?</div>
+            <input type="text" class="answer-input" placeholder="Enter text-shadow value..." data-answer="0 0 8px blue" style="width: 250px;">
+            <button class="check-btn" onclick="checkAnswer(this, '0 0 8px blue')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Glow effects use 0 0 for x/y offset</div>
+        </div>
+
+        <!-- Question 25 -->
+        <div class="question-section">
+            <span class="question-type">ADVANCED</span>
+            <span class="question-number">Q25</span>
+            <div class="question">What keyword do you add to box-shadow to create an inner shadow instead of outer?</div>
+            <input type="text" class="answer-input" placeholder="Enter keyword..." data-answer="inset">
+            <button class="check-btn" onclick="checkAnswer(this, 'inset')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This keyword goes at the beginning of the box-shadow value.</div>
+        </div>
+
+        <!-- Question 26 -->
+        <div class="question-section">
+            <span class="question-type">FLOAT CLEARING</span>
+            <span class="question-number">Q26</span>
+            <div class="question">What CSS property stops elements from floating beside floated elements?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="clear">
+            <button class="check-btn" onclick="checkAnswer(this, 'clear')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This property "clears" the float effect.</div>
+        </div>
+
+        <!-- Question 27 -->
+        <div class="question-section">
+            <span class="question-type">GRADIENT DIRECTION</span>
+            <span class="question-number">Q27</span>
+            <div class="question">Complete this linear gradient that goes from red at the top to blue at the bottom:</div>
+            <div class="code-block">
+background: linear-gradient(<span style="background: #3498db; padding: 2px 8px; border-radius: 3px;">____</span>, red, blue);
+            </div>
+            <input type="text" class="answer-input" placeholder="Enter direction..." data-answer="to bottom">
+            <button class="check-btn" onclick="checkAnswer(this, 'to bottom')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Use direction keywords like "to bottom", "to right", etc.</div>
+        </div>
+
+        <!-- Question 28 -->
+        <div class="question-section">
+            <span class="question-type">HOVER TRANSITION</span>
+            <span class="question-number">Q28</span>
+            <div class="question">What property makes hover effects animate smoothly instead of changing instantly?</div>
+            <input type="text" class="answer-input" placeholder="Enter property name..." data-answer="transition">
+            <button class="check-btn" onclick="checkAnswer(this, 'transition')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">This property controls the speed of style changes.</div>
+        </div>
+
+        <!-- Question 29 -->
+        <div class="question-section">
+            <span class="question-type">FLOAT SCENARIO</span>
+            <span class="question-number">Q29</span>
+            <div class="question">You have a floated sidebar and want the footer to appear below it (not beside it). What CSS property and value do you use on the footer?</div>
+            <div class="scenario">
+                HTML structure: header, floated sidebar, main content, footer<br>
+                Problem: Footer is appearing next to the sidebar instead of below everything.
+            </div>
+            <input type="text" class="answer-input" placeholder="Enter property and value..." data-answer="clear: both" style="width: 200px;">
+            <button class="check-btn" onclick="checkAnswer(this, 'clear: both')">Check Answer</button>
+            <div class="feedback"></div>
+            <div class="hint">Think about which property "clears" float effects and what value clears both left and right floats.</div>
+        </div>
+
+        <!-- Question 30 -->
+        <div class="question-section">
+            <span class="question-type">FINAL CHALLENGE</span>
+            <span class="question-number">Q30</span>
+            <div class="question">Create a complete CSS rule for a hover card with these features:</div>
+            <ul>
+                <li>Class name: "hover-card"</li>
+                <li>Normal: width 200px, padding 20px, light gray background, rounded corners (10px)</li>
+                <li>On hover: box shadow (0 4px 8px rgba(0,0,0,0.2)) and darker gray background</li>
+            </ul>
+            <textarea class="text-area" placeholder="Write your complete CSS rules here..." data-answer="hover-card" style="min-height: 120px;"></textarea>
+            <button class="check-btn" onclick="checkTextArea(this, 'hover-card')">Check Answer</button>
+            <div class="feedback"></div>
+        </div>
+
+        <button class="submit-all-btn" onclick="showFinalResults()">Show Final Results</button>
+        
+        <div class="final-score" id="finalScore">
+            <h2>🎉 Quiz Results!</h2>
+            <div id="scoreDisplay"></div>
+            <div id="scoreMessage"></div>
+            <button class="submit-all-btn" onclick="resetQuiz()">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        let totalAnswered = 0;
+        let correctAnswers = 0;
+
+        function checkAnswer(button, correctAnswer) {
+            const questionSection = button.closest('.question-section');
+            const input = questionSection.querySelector('.answer-input');
+            const feedback = questionSection.querySelector('.feedback');
+            const userAnswer = input.value.trim().toLowerCase();
+            const correct = correctAnswer.toLowerCase();
+            
+            // Disable input and button
+            input.disabled = true;
+            button.disabled = true;
+            button.textContent = 'Answered';
+            button.style.background = '#95a5a6';
+            
+            totalAnswered++;
+            
+            if (userAnswer === correct) {
+                correctAnswers++;
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <strong>✅ Correct!</strong><br>
+                    <em>${getExplanation(correctAnswer)}</em>
+                `;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <strong>❌ Incorrect</strong><br>
+                    Your answer: <strong>${input.value}</strong><br>
+                    Correct answer: <div class="correct-answer">${correctAnswer}</div>
+                    <em>${getExplanation(correctAnswer)}</em>
+                `;
+            }
+            
+            feedback.style.display = 'block';
+        }
+
+        function checkTextArea(button, type) {
+            const questionSection = button.closest('.question-section');
+            const textarea = questionSection.querySelector('.text-area');
+            const feedback = questionSection.querySelector('.feedback');
+            const userAnswer = textarea.value.trim().toLowerCase();
+            
+            // Disable textarea and button
+            textarea.disabled = true;
+            button.disabled = true;
+            button.textContent = 'Answered';
+            button.style.background = '#95a5a6';
+            
+            totalAnswered++;
+            
+            let isCorrect = false;
+            let correctExample = '';
+            
+            if (type === 'text-decoration') {
+                isCorrect = userAnswer.includes('text-decoration') && 
+                           userAnswer.includes('none') && 
+                           userAnswer.includes('underline') && 
+                           userAnswer.includes(':hover');
+                correctExample = `a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}`;
+            } else if (type === 'hover-card') {
+                isCorrect = userAnswer.includes('hover-card') && 
+                           userAnswer.includes(':hover') && 
+                           userAnswer.includes('box-shadow') && 
+                           userAnswer.includes('width');
+                correctExample = `.hover-card {
+    width: 200px;
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+.hover-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: darkgray;
+}`;
+            }
+            
+            if (isCorrect) {
+                correctAnswers++;
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `
+                    <strong>✅ Excellent!</strong><br>
+                    You included all the required elements!
+                `;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `
+                    <strong>❌ Missing some elements</strong><br>
+                    Example solution:<br>
+                    <div class="correct-answer">${correctExample}</div>
+                `;
+            }
+            
+            feedback.style.display = 'block';
+        }
+
+        function getExplanation(property) {
+            const explanations = {
+                'width': 'Controls the horizontal space an element occupies.',
+                'height': 'Sets the vertical dimension of an element.',
+                'margin': 'Creates space outside an element\'s border.',
+                'padding': 'Adds space inside an element, between content and border.',
+                'border-radius': 'Creates rounded corners on elements.',
+                'border': 'Creates a visible line around an element\'s perimeter.',
+                'border-box': 'Makes width/height include padding and border.',
+                'float': 'Removes elements from normal flow for text wrapping.',
+                'left': 'Floats element to the left side.',
+                'right': 'Floats element to the right side.',
+                'inline-block': 'Allows side-by-side elements with width/height.',
+                'text-decoration': 'Controls underlines, overlines, and strikethroughs.',
+                'font-family': 'Specifies which typeface to use for text.',
+                'font-size': 'Controls how large or small text appears.',
+                'color': 'Changes the color of text content.',
+                'background-color': 'Sets the color behind an element\'s content.',
+                'box-shadow': 'Creates shadow effects around elements.',
+                'text-shadow': 'Adds shadow effects specifically to text.',
+                'linear-gradient': 'Creates smooth color transitions in a straight line.',
+                'radial-gradient': 'Creates circular or elliptical color transitions.',
+                ':hover': 'Applies styles when user hovers over an element.',
+                '2px 3px 5px gray': 'Box-shadow format: horizontal vertical blur color.',
+                '0 0 8px blue': 'Text glow with no offset and blur radius.',
+                'inset': 'Creates inner shadow instead of outer shadow.',
+                'clear: both': 'Clears floats on both left and right sides.',
+                'to bottom': 'Direction for top-to-bottom gradients.',
+                'transition': 'Makes style changes animate smoothly.'
+            };
+            return explanations[property] || 'Important CSS property for styling and layout.';
+        }
+
+        function showFinalResults() {
+            const finalScore = document.getElementById('finalScore');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (totalAnswered === 0) {
+                alert('Please answer at least one question before viewing results!');
+                return;
+            }
+            
+            const percentage = Math.round((correctAnswers / totalAnswered) * 100);
+            
+            scoreDisplay.innerHTML = `
+                <h3>Your Score: ${correctAnswers}/${totalAnswered} questions answered correctly</h3>
+                <h3>Percentage: ${percentage}%</h3>
+            `;
+            
+            let message = '';
+            let bgColor = '';
+            
+            if (percentage >= 90) {
+                message = "🌟 Outstanding! You've mastered CSS properties!";
+                bgColor = '#d4edda';
+            } else if (percentage >= 75) {
+                message = "🎉 Great job! You have a solid understanding of CSS properties.";
+                bgColor = '#fff3cd';
+            } else if (percentage >= 60) {
+                message = "👍 Good effort! Review the concepts you missed and keep practicing.";
+                bgColor = '#fff3cd';
+            } else {
+                message = "📚 Keep studying! CSS takes time to master. Focus on the fundamentals.";
+                bgColor = '#f8d7da';
+            }
+            
+            scoreMessage.innerHTML = `<p style="font-size: 1.2em;">${message}</p>`;
+            finalScore.style.backgroundColor = bgColor;
+            finalScore.style.display = 'block';
+            
+            // Scroll to results
+            finalScore.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            // Reset counters
+            totalAnswered = 0;
+            correctAnswers = 0;
+            
+            // Reset all inputs and buttons
+            document.querySelectorAll('.answer-input, .text-area').forEach(input => {
+                input.value = '';
+                input.disabled = false;
+            });
+            
+            document.querySelectorAll('.check-btn').forEach(button => {
+                button.disabled = false;
+                button.textContent = 'Check Answer';
+                button.style.background = '#3498db';
+            });
+            
+            // Hide all feedback
+            document.querySelectorAll('.feedback').forEach(feedback => {
+                feedback.style.display = 'none';
+            });
+            
+            // Hide final score
+            document.getElementById('finalScore').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Allow Enter key to submit answers
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('answer-input')) {
+                const button = e.target.parentElement.querySelector('.check-btn');
+                if (!button.disabled) {
+                    button.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
